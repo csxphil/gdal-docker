@@ -13,8 +13,10 @@ FROM ubuntu:trusty
 MAINTAINER Homme Zwaagstra <hrz@geodata.soton.ac.uk>
 
 # Install the application.
+
+COPY instantclient_11_2 /opt/instantclient_11_2/
+ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/opt/instantclient_11_2/
 ADD . /usr/local/src/gdal-docker/
-COPY /tmp/build/instantclient_11_2/ /opt/instantclient/
 RUN apt-get update -y && \
     apt-get install -y make && \
     make -C /usr/local/src/gdal-docker install clean && \

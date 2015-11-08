@@ -37,7 +37,7 @@ LIBECWJ2_DEV := /usr/local/include/NCSECWClient.h
 MRSID_DEV := /usr/local/include/lt_base.h
 LIBHDF5_DEV := /usr/include/H5Cpp.h
 DEPS_DEV := /usr/include/numpy	# Represents all dependency packages.
-ORACLE_HOME := /opt/instantclient
+ORACLE_HOME := /opt/instantclient/
 
 # Build tools.
 SVN := /usr/bin/svn
@@ -68,7 +68,7 @@ $(GDAL_CONFIG): /tmp/gdal  $(OPENJPEG_DEV) $(FILEGDBAPI_DEV) $(LIBECWJ2_DEV) $(M
 		--with-webp \
 		--with-epsilon \
 		--with-gta \
-		--with-oci-include=$(ORACLE_HOME) \
+		--with-oci-include=$(ORACLE_HOME)/sdk/include \
         --with-oci-lib=$(ORACLE_HOME) \
 		--with-ecw=/usr/local \
 		--with-mrsid=/usr/local \
