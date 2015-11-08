@@ -14,7 +14,7 @@ MAINTAINER Homme Zwaagstra <hrz@geodata.soton.ac.uk>
 
 # Install the application.
 ADD . /usr/local/src/gdal-docker/
-ADD /home/gridusr/local/instantclient_11_2/ /opt/instantclient/
+ADD instantclient_11_2/ /opt/instantclient/
 RUN apt-get update -y && \
     apt-get install -y make && \
     make -C /usr/local/src/gdal-docker install clean && \
