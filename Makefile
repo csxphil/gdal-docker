@@ -79,10 +79,6 @@ $(GDAL_CONFIG): /tmp/gdal  $(OPENJPEG_DEV) $(FILEGDBAPI_DEV) $(LIBECWJ2_DEV) $(M
 		--with-openjpeg=/usr/local \
 	    $(USE_GRASS) \
 	&& make -j$(NPROC) \
-	&& cd ../../swig/perl \
-	&& make generate \
-	&& make -j$(NPROC) \
-	&& cd ../.. \
 	&& make install \
 	&& ldconfig
 
