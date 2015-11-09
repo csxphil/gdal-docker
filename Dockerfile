@@ -14,8 +14,8 @@ MAINTAINER Homme Zwaagstra <hrz@geodata.soton.ac.uk>
 
 # Install the application.
 
-COPY instantclient_11_2 /opt/instantclient_11_2/
-ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/opt/instantclient_11_2/
+COPY instantclient_11_2 /opt/instantclient/
+ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/opt/instantclient/
 ADD . /usr/local/src/gdal-docker/
 RUN apt-get update -y && \
     apt-get install -y make && \
@@ -23,11 +23,14 @@ RUN apt-get update -y && \
     apt-get purge -y make
 
 # Externally accessible data is by default put in /data
-WORKDIR /data
-VOLUME ["/data"]
+WORKDIR /u02
+VOLUME ["/u02"]
+
+WORKDIR /u03
+VOLUME ["/u03"]
 
 # Execute the gdal utilities as nobody, not root
 USER nobody
 
 # Output version and capabilities by default.
-CMD gdalinfo --version && gdalinfo --formats && ogrinfo --formats
+#CMD gdalinfo --version && gdalinfo --formats && ogrinfo --formats
