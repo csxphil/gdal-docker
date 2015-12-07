@@ -1,7 +1,11 @@
 ./configure --prefix=/usr/local \
-        --with-jpeg12=internal \
-        --with-libpng=internal \
+        --with-png=internal \
         --with-jpeg=internal \
+        --with-libz=internal \
+        --with-libtiff=internal \
+        --with-geotiff=internal \
+        --with-gif=internal \
+        --with-libjson-c=internal \
         --with-python \
         --with-poppler \
         --with-podofo \
