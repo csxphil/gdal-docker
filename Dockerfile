@@ -34,7 +34,7 @@ RUN apt-get update && apt-get install -y --fix-missing --no-install-recommends b
 RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable -y
 
 # Installing Packages   
-RUN apt-get update && apt-get install -y --fix-missing --no-install-recommends libpq-dev libpng12-dev libjpeg-dev libgif-dev liblzma-dev libgeos-dev libcurl4-gnutls-dev libproj-dev libxml2-dev libexpat-dev libxerces-c-dev libnetcdf-dev netcdf-bin libpoppler-dev libspatialite-dev swig libhdf5-serial-dev libpodofo-dev poppler-utils libfreexl-dev libwebp-dev libepsilon-dev libpcre3-dev 
+RUN apt-get update && apt-get install -y --fix-missing --no-install-recommends openssh-client libpq-dev libpng12-dev libjpeg-dev libgif-dev liblzma-dev libgeos-dev libcurl4-gnutls-dev libproj-dev libxml2-dev libexpat-dev libxerces-c-dev libnetcdf-dev netcdf-bin libpoppler-dev libspatialite-dev swig libhdf5-serial-dev libpodofo-dev poppler-utils libfreexl-dev libwebp-dev libepsilon-dev libpcre3-dev 
 
 # Getting libKML
 RUN wget http://s3.amazonaws.com/etc-data.koordinates.com/gdal-travisci/${LIBKML_DOWNLOAD} -O /build/${LIBKML_DOWNLOAD} && \
