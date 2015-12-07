@@ -61,7 +61,7 @@ RUN cd /build && \
 ADD gdal_configure.sh /build
 RUN cd /build/gdal/gdal &&  \
     bash /build/gdal_configure.sh && \
-    make -j `nprocs` && \
+    make -j && \
     make install && \
     ldconfig    
 
