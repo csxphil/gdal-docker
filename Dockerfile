@@ -18,7 +18,7 @@ COPY instantclient_12_1 /opt/instantclient/
 ARG UID
 ARG GID
 RUN addgroup --gid $GID gdalgroup
-RUN adduser --no-create-home --disabled-login gdaluser --uid $UID --gid $GID
+RUN adduser --no-create-home --disabled-login gdaluser  --gecos "" --uid $UID --gid $GID
 
 ENV ORACLE_HOME=/opt/instantclient 
 ENV LD_LIBRARY_PATH=${ORACLE_HOME}:/usr/lib 
