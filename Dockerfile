@@ -24,7 +24,8 @@ ENV ORACLE_HOME=/opt/instantclient
 ENV LD_LIBRARY_PATH=${ORACLE_HOME}:/usr/lib 
 ENV LIBKML_DOWNLOAD=install-libkml-r864-64bit.tar.gz
 ENV FILEGDBAPI_DOWNLOAD=FileGDB_API_1_2-64.tar.gz 
-ENV MRSID_DIR=MrSID_DSDK-8.5.0.3422-linux.x86-64.gcc44  MRSID_DOWNLOAD=${MRSID_DIR}.tar.gz 
+ENV MRSID_DIR=MrSID_DSDK-8.5.0.3422-linux.x86-64.gcc44  
+ENV MRSID_DOWNLOAD=${MRSID_DIR}.tar.gz 
 
 # Setup build env
 RUN mkdir /build
