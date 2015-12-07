@@ -54,7 +54,7 @@ RUN wget --no-verbose http://s3.amazonaws.com/etc-data.koordinates.com/gdal-trav
 
 ARG GDAL_VERSION
 RUN cd /build && \
-    git clone git@github.com:OSGeo/gdal.git gdal && \
+    git clone git@github.com:OSGeo/gdal.git && \
     cd /build/gdal && \
     git checkout ${GDAL_VERSION}
 
