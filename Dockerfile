@@ -16,7 +16,8 @@ COPY instantclient_12_1 /opt/instantclient/
 
 #Setup user
 ARG UID
-ARG GID 
+ARG GID
+RUN addgroup --gid $GID gdalgroup
 RUN adduser --no-create-home --disabled-login gdaluser --uid $UID --gid $GID
 
 ENV ORACLE_HOME=/opt/instantclient 
