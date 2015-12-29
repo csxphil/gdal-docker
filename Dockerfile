@@ -52,6 +52,9 @@ RUN wget --no-verbose http://s3.amazonaws.com/etc-data.koordinates.com/gdal-trav
  cp -r /build/FileGDB_API/include/* /usr/local/include && \
  cp -r /build/FileGDB_API/lib/* /usr/local/lib
 
+RUN export ORACLE_HOME
+RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/instantclient 
+
 ARG GDAL_VERSION
 RUN cd /build && \
     git clone https://github.com/OSGeo/gdal.git && \
@@ -61,7 +64,7 @@ RUN cd /build && \
 ADD gdal_configure.sh /build
 RUN cd /build/gdal/gdal &&  \
     bash /build/gdal_configure.sh && \
-    make -j && \
+    make && \
     make install && \
     ldconfig    
 
