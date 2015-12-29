@@ -1,13 +1,19 @@
 ./configure --prefix=/usr/local \
-        --with-jpeg12 \
+        --with-png=internal \
+        --with-jpeg=internal \
+        --with-libz=internal \
+        --with-libtiff=internal \
+        --with-geotiff=internal \
+        --with-gif=internal \
+        --with-libjson-c=internal \
         --with-python \
         --with-poppler \
         --with-podofo \
         --with-spatialite \
         --with-liblzma \
         --with-webp \
-        --with-oci-include=$(ORACLE_HOME)/sdk/include \
-        --with-oci-lib=$(ORACLE_HOME) \
+        --with-oci-include=${ORACLE_HOME}/sdk/include \
+        --with-oci-lib=${ORACLE_HOME} \
         --with-mrsid=/usr/local \
         --with-fgdb=/usr/local \
         --with-libkml \

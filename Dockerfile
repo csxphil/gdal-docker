@@ -16,14 +16,16 @@ COPY instantclient_12_1 /opt/instantclient/
 
 #Setup user
 ARG UID
-ARG GID 
-RUN adduser --no-create-home --disabled-login gdaluser --uid $UID --gid $GID
+ARG GID
+RUN addgroup --gid $GID gdalgroup
+RUN adduser --no-create-home --disabled-login gdaluser  --gecos "" --uid $UID --gid $GID
 
 ENV ORACLE_HOME=/opt/instantclient 
 ENV LD_LIBRARY_PATH=${ORACLE_HOME}:/usr/lib 
 ENV LIBKML_DOWNLOAD=install-libkml-r864-64bit.tar.gz
 ENV FILEGDBAPI_DOWNLOAD=FileGDB_API_1_2-64.tar.gz 
-ENV MRSID_DIR=MrSID_DSDK-8.5.0.3422-linux.x86-64.gcc44  MRSID_DOWNLOAD=${MRSID_DIR}.tar.gz 
+ENV MRSID_DIR=MrSID_DSDK-8.5.0.3422-linux.x86-64.gcc44  
+ENV MRSID_DOWNLOAD=MrSID_DSDK-8.5.0.3422-linux.x86-64.gcc44.tar.gz 
 
 # Setup build env
 RUN mkdir /build
@@ -32,7 +34,7 @@ RUN apt-get update && apt-get install -y --fix-missing --no-install-recommends b
 RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable -y
 
 # Installing Packages   
-RUN apt-get update && apt-get install -y --fix-missing --no-install-recommends libpq-dev libpng12-dev libjpeg-dev libgif-dev liblzma-dev libgeos-dev libcurl4-gnutls-dev libproj-dev libxml2-dev libexpat-dev libxerces-c-dev libnetcdf-dev netcdf-bin libpoppler-dev libspatialite-dev swig libhdf5-serial-dev libpodofo-dev poppler-utils libfreexl-dev libwebp-dev libepsilon-dev libpcre3-dev openjdk-8-jdk 
+RUN apt-get update && apt-get install -y --fix-missing --no-install-recommends openssh-client libpq-dev libpng12-dev libjpeg-dev libgif-dev liblzma-dev libgeos-dev libcurl4-gnutls-dev libproj-dev libxml2-dev libexpat-dev libxerces-c-dev libnetcdf-dev netcdf-bin libpoppler-dev libspatialite-dev swig libhdf5-serial-dev libpodofo-dev poppler-utils libfreexl-dev libwebp-dev libepsilon-dev libpcre3-dev openjdk-8-jdk 
 
 # Getting libKML
 RUN wget http://s3.amazonaws.com/etc-data.koordinates.com/gdal-travisci/${LIBKML_DOWNLOAD} -O /build/${LIBKML_DOWNLOAD} && \
@@ -52,14 +54,14 @@ RUN wget --no-verbose http://s3.amazonaws.com/etc-data.koordinates.com/gdal-trav
 
 ARG GDAL_VERSION
 RUN cd /build && \
-    git clone git@github.com:OSGeo/gdal.git gdal && \
+    git clone https://github.com/OSGeo/gdal.git && \
     cd /build/gdal && \
     git checkout ${GDAL_VERSION}
 
 ADD gdal_configure.sh /build
 RUN cd /build/gdal/gdal &&  \
     bash /build/gdal_configure.sh && \
-    make -j `nprocs` && \
+    make -j && \
     make install && \
     ldconfig    
 
