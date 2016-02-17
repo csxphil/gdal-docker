@@ -30,9 +30,8 @@ ENV MRSID_DOWNLOAD=MrSID_DSDK-8.5.0.3422-linux.x86-64.gcc44.tar.gz
 # Setup build env
 RUN mkdir /build
 RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 16126D3A3E5C1192 \
-  && apt-get update && apt-get install -y --fix-missing --no-install-recommends build-essential ca-certificates curl wget git libaio1 make cmake python-numpy python-dev python-software-properties software-properties-common  libc6-dev \
   && add-apt-repository ppa:ubuntugis/ubuntugis-unstable -y \
-#  && add-apt-repository ppa:openjdk-r/ppa -y \
+  && apt-get update && apt-get install -y --fix-missing --no-install-recommends build-essential ca-certificates curl wget git libaio1 make cmake python-numpy python-dev python-software-properties software-properties-common  libc6-dev \
   && apt-get update && apt-get install -y --fix-missing --no-install-recommends openssh-client libpq-dev libpng12-dev libjpeg-dev libgif-dev liblzma-dev libgeos-dev libcurl4-gnutls-dev libproj-dev libxml2-dev libexpat-dev libxerces-c-dev libnetcdf-dev netcdf-bin libpoppler-dev libspatialite-dev swig libhdf5-serial-dev libpodofo-dev poppler-utils libfreexl-dev libwebp-dev libepsilon-dev libpcre3-dev \
   && apt-get remove --purge -y $BUILD_PACKAGES  && rm -rf /var/lib/apt/lists/*
 
@@ -55,6 +54,9 @@ RUN wget --no-verbose http://s3.amazonaws.com/etc-data.koordinates.com/gdal-trav
  cp -r /build/FileGDB_API/include/* /usr/local/include && \
  cp -r /build/FileGDB_API/lib/* /usr/local/lib \
  && rm -Rf /build/FileGDB_API
+
+RUN export ORACLE_HOME
+RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/instantclient 
 
 RUN export ORACLE_HOME
 RUN export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/instantclient 
